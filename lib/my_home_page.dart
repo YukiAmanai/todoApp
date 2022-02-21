@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'create_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -10,16 +11,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   final List<String> _todoItems = [
     "英語の課題",
     "牛乳を買う",
     "Amanai Yuki",
   ];
 
-  void _incrementCounter() {
+  void _addTodo(String title) {
     setState(() {
-      _counter++;
+      _todoItems.add(title);
     });
   }
 
@@ -49,8 +49,8 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: "Increment",
+        onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => CreatePage())),
+        tooltip: "Add Todo",
         child: const Icon(Icons.add),
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
