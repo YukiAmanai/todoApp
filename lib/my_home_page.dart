@@ -10,16 +10,22 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+class Todo {
+  String title;
+  IconData icon;
+
+  Todo(this.title, this.icon);
+}
+
 class _MyHomePageState extends State<MyHomePage> {
-  final List<String> _todoItems = [
-    "英語の課題",
-    "牛乳を買う",
-    "Amanai Yuki",
+  List<Todo> _todoItems = [
+    Todo("英語の課題", Icons.description),
+    Todo("牛乳を買う", Icons.local_grocery_store),
   ];
 
-  void _addTodo(String title) {
+  void _addTodo(Todo todo) {
     setState(() {
-      _todoItems.add(title);
+  _todoItems.add(todo);
     });
   }
 
@@ -33,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Yuki Amanai'),
+        title: Text('牛乳'),
       ),
       body:ListView.builder(
         itemCount: _todoItems.length,
@@ -44,13 +50,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 border: Border.all(width: 1.0, color: Colors.red),
               ),
               child: ListTile(
-                title: Text(_todoItems[index]),
+              leading: Icon(
+                  _todoItems[index].icon,
+                  size: 35.0,
+                ),
+                title: Text(_todoItems[index].title),
                 trailing: IconButton(
                   icon: const Icon(Icons.more_vert),
                   onPressed: () => showDialog(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                        title: Text(_todoItems[index]),
+                        title: Text(_todoItems[index].title),
                         actions: [
                           IconButton(
                             icon: Icon(Icons.delete),
@@ -69,15 +79,14 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
+        floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final String? title = await Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => CreatePage()));
-          if (title != null && title != "") _addTodo(title);
+        final String? title = await Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => CreatePage()));
+        if (title != null && title != "") _addTodo(Todo(title, Icons.add));;
         },
-        tooltip: "Add Todo",
         child: const Icon(Icons.add),
-      ),
+        ),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
