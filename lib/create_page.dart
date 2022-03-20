@@ -21,6 +21,8 @@ class _CreatePageState extends State<CreatePage> {
         child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              Image.network(
+                  'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
               const Text ("todoを入力してください"),
               TextField(
                 onChanged: (String text) => _title = text,

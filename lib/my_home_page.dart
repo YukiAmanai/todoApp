@@ -20,7 +20,7 @@ class Todo {
 class _MyHomePageState extends State<MyHomePage> {
   List<Todo> _todoItems = [
     Todo("英語の課題", Icons.description),
-    Todo("牛乳を買う", Icons.local_grocery_store),
+    Todo("牛乳を買う", Icons.local_grocery_store)
   ];
 
   void _addTodo(Todo todo) {
@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('牛乳'),
+        title: Text('タイトル'),
       ),
       body:ListView.builder(
         itemCount: _todoItems.length,
@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return Card(
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(width: 1.0, color: Colors.red),
+                border: Border.all(width: 1.0, color: Colors.redAccent),
               ),
               child: ListTile(
               leading: Icon(
@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () async {
         final String? title = await Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => CreatePage()));
-        if (title != null && title != "") _addTodo(Todo(title, Icons.add));;
+        if (title != null && title != "") _addTodo(Todo(title, Icons.add));
         },
         child: const Icon(Icons.add),
         ),
