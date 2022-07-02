@@ -19,13 +19,15 @@ class Todo {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Todo> _todoItems = [
-    Todo("英語の課題", Icons.description),
-    Todo("牛乳を買う", Icons.local_grocery_store)
+    Todo("英語の問題", Icons.description),
+    Todo("牛乳を買う", Icons.local_grocery_store),
+    Todo("参考書", Icons.watch_later)
+
   ];
 
   void _addTodo(Todo todo) {
     setState(() {
-  _todoItems.add(todo);
+      _todoItems.add(todo);
     });
   }
 
@@ -50,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 border: Border.all(width: 1.0, color: Colors.redAccent),
               ),
               child: ListTile(
-              leading: Icon(
+                leading: Icon(
                   _todoItems[index].icon,
                   size: 35.0,
                 ),
@@ -58,20 +60,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 trailing: IconButton(
                   icon: const Icon(Icons.more_vert),
                   onPressed: () => showDialog(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: Text(_todoItems[index].title),
-                        actions: [
-                          IconButton(
-                            icon: Icon(Icons.delete),
-                            color: Colors.red,
-                            onPressed: () {
-                              _deleteTodo(index);
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ],
-                      ),
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      title: Text(_todoItems[index].title),
+                      actions: [
+                        IconButton(
+                          icon: Icon(Icons.delete),
+                          color: Colors.red,
+                          onPressed: () {
+                            _deleteTodo(index);
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -79,14 +81,14 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         },
       ),
-        floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
         onPressed: () async {
-        final String? title = await Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => CreatePage()));
-        if (title != null && title != "") _addTodo(Todo(title, Icons.add));
+          final String? title = await Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => CreatePage()));
+          if (title != null && title != "") _addTodo(Todo(title, Icons.add));
         },
         child: const Icon(Icons.add),
-        ),
+      ),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

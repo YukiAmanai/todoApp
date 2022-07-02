@@ -15,20 +15,18 @@ class _CreatePageState extends State<CreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Create TODO"),
+        title: const Text("投稿する"),
       ),
       body: Center(
         child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.network(
-                  'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
-              const Text ("todoを入力してください"),
+              const Text ("今日のTODOを入力してください"),
               TextField(
                 onChanged: (String text) => _title = text,
               ),
               ElevatedButton(
-                child: const Text("Add"),
+                child: const Text("追加"),
                 onPressed: () => Navigator.pop(context, _title),
               ),
             ]
