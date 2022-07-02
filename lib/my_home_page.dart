@@ -18,7 +18,7 @@ class Todo {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Todo> _todoItems = [
+  final List<Todo> _todoItems = [
     Todo("英語の問題", Icons.description),
     Todo("牛乳を買う", Icons.local_grocery_store),
     Todo("参考書", Icons.watch_later)
@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('タイトル'),
+        title: const Text('タイトル'),
       ),
       body:ListView.builder(
         itemCount: _todoItems.length,
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Text(_todoItems[index].title),
                       actions: [
                         IconButton(
-                          icon: Icon(Icons.delete),
+                          icon: const Icon(Icons.delete),
                           color: Colors.red,
                           onPressed: () {
                             _deleteTodo(index);
@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           final String? title = await Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => CreatePage()));
+              .push(MaterialPageRoute(builder: (context) => const CreatePage()));
           if (title != null && title != "") _addTodo(Todo(title, Icons.add));
         },
         child: const Icon(Icons.add),
