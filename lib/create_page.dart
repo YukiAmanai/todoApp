@@ -21,7 +21,7 @@ class _CreatePageState extends State<CreatePage> {
         child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text ("今日のTODOを入力してください"),
+              const Text ("TODOを入力してください"),
               TextField(
                 onChanged: (String text) => _title = text,
               ),
