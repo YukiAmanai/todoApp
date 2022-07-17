@@ -5,14 +5,15 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
+  final int _counter = 0;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class Todo {
-  String title;
-  IconData icon;
+  final String title;
+  final IconData icon;
 
   Todo(this.title, this.icon);
 }
@@ -41,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('タイトル'),
+        title: const Text('TODO一覧'),
       ),
       body:ListView.builder(
         itemCount: _todoItems.length,
